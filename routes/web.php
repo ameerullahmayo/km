@@ -19,6 +19,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// admin routes
+Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+//user routes
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/shop', [App\Http\Controllers\HomeController::class, 'shop'])->name('shop');
 Route::get('/shop-detail', [App\Http\Controllers\HomeController::class, 'shopDetail'])->name('shop.detail');

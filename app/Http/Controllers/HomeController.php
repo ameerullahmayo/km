@@ -21,8 +21,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function dashboard(){
+        return view('backend.dashboard');
+    }
     public function index()
     {
+        if(auth()->user()->role == 'admin'){
+            return redirect()->route('dashboard');
+        }else{
+            return redirect()->route('welcome');
+        }
         return view('home');
     }
      public function shop()
@@ -49,5 +57,5 @@ class HomeController extends Controller
     {
         return view('checkout');
     }
-    
+
 }
