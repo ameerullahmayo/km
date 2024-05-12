@@ -20,8 +20,13 @@ Route::get('/', function () {
 Auth::routes();
 
 // admin routes
-Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+
+Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+// Define resource routes for categories
+Route::resource('categories', App\Http\Controllers\CategoryController::class);
+// Define resource routes for products
+Route::resource('products', App\Http\Controllers\ProductController::class);
 //user routes
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/shop', [App\Http\Controllers\HomeController::class, 'shop'])->name('shop');

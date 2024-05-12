@@ -14,7 +14,20 @@
                 <i class="bi bi-person"></i>
                 <span>Users</span>
             </a>
-        </li><!-- End Profile Page Nav -->
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('categories.index')}}">
+                <i class="bi bi-person"></i>
+                <span>Categories</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('products.index')}}">
+                <i class="bi bi-person"></i>
+                <span>Products</span>
+            </a>
+        </li>
+        <!-- End Profile Page Nav  categories -->
 
         @endif
         @if(\Auth::user()->role == 'user')
