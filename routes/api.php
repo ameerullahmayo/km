@@ -21,9 +21,10 @@ Route::post('logout', [RegisterController::class, 'logout']);
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
-// Route::middleware('auth:api')->group( function () {
+Route::middleware('auth:api')->group( function () {
     Route::resource('products', ProductController::class);
     Route::get('categories-list', [ProductController::class,'getCategoreisList']);
     Route::get('products-list', [ProductController::class,'getProductsList']);
     Route::get('product-details/{id}', [ProductController::class,'getProductDetails']);
-// });
+    Route::get('user-profile/{user_id}', [RegisterController::class,'userProfile']);
+});

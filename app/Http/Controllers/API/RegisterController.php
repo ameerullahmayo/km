@@ -64,4 +64,15 @@ class RegisterController extends BaseController
          return $this->sendResponse([],'Successfully logged out');
         
     }
+
+    
+    public function userProfile($user_id)
+    {
+        // Validate the token before attempting to log out
+        $user = User::where('id',$user_id)->first();
+        
+        return $this->sendResponse($user, 'User Profil');
+        
+        
+    }
 }
