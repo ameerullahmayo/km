@@ -29,7 +29,8 @@ Route::resource('categories', App\Http\Controllers\CategoryController::class);
 Route::resource('products', App\Http\Controllers\ProductController::class);
 //user routes
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/shop', [App\Http\Controllers\HomeController::class, 'shop'])->name('shop');
+Route::get('/category', [App\Http\Controllers\HomeController::class, 'categories'])->name('shop.categories');
+Route::get('/products', [App\Http\Controllers\HomeController::class, 'shop'])->name('shop.products');
 Route::get('/shop-detail', [App\Http\Controllers\HomeController::class, 'shopDetail'])->name('shop.detail');
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 Route::get('/testimonial', [App\Http\Controllers\HomeController::class, 'testimonial'])->name('testimonial');

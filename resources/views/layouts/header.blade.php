@@ -2,8 +2,8 @@
             <div class="container topbar bg-primary d-none d-lg-block">
                 <div class="d-flex justify-content-between">
                     <div class="top-info ps-2">
-                        <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a href="#" class="text-white">Kitchens Masala House Nu 14 Street Nu 4 Muhammad Pora Gajjo Matta Khana Nou Lahore.Pakistan</a></small>
-                        <small class="me-3"><i class="fas fa-phone me-2 text-secondary"></i> <a href="#" class="text-white">+923008025939</a></small>
+                        <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a href="#" class="text-white">Kitchens Masala House No 14 Street No 4 Muhammad Pura Gajjumatta Kahna Nau Lahore, Pakistan.</a></small> 
+                        <small class="me-3"><i class="fas fa-phone me-2 text-secondary"></i> <a href="#" class="text-white">+923008025111</a></small>
                         <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#" class="text-white">kitchensmasalainfo@gmail.com</a></small>
                     </div>
                     <!-- <div class="top-link pe-2">
@@ -22,16 +22,17 @@
                     <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                         <div class="navbar-nav mx-auto">
                             <a href="{{route('welcome')}}" class="nav-item nav-link active">Home</a>
-                            <a href="{{route('shop')}}" class="nav-item nav-link">Shop</a>
-                            <a href="{{route('shop.detail')}}" class="nav-item nav-link">Shop Detail</a>
-                            <div class="nav-item dropdown">
+                             <a href="{{route('shop.categories')}}" class="nav-item nav-link">Categories</a>
+                            <a href="{{route('shop.products')}}" class="nav-item nav-link">Products</a>
+                           
+                            <!-- <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
                                     <a href="chackout.html" class="dropdown-item">Chackout</a>
                                     <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                                     <a href="404.html" class="dropdown-item">404 Page</a>
                                 </div>
-                            </div>
+                            </div> -->
                             <a href="{{route('contact')}}" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="d-flex m-3 me-0">

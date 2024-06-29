@@ -33,7 +33,12 @@ class HomeController extends Controller
         }
         return view('home');
     }
+    public function categories(){
+
+        return view('categories');
+    }
      public function shop()
+
     {
         return view('shop');
     }

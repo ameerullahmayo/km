@@ -28,7 +28,7 @@ class ProductController extends BaseController
     public function getProductsList(Request $request)
     {
        
-        $products=Product::with('category')->get();
+        $products=Product::where('category_id',$request->categories)->with('category')->get();
         
 
         return $this->sendResponse($products, 'Products List');
