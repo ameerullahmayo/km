@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,11 +27,14 @@ Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->nam
 // Define resource routes for categories
 Route::resource('categories', App\Http\Controllers\CategoryController::class);
 // Define resource routes for products
-Route::resource('products', App\Http\Controllers\ProductController::class);
+   Route::resource('products', ProductController::class);
+
+// Define resource routes for Banner
+Route::resource('banners', App\Http\Controllers\BannerController::class);
 //user routes
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/category', [App\Http\Controllers\HomeController::class, 'categories'])->name('shop.categories');
-Route::get('/products', [App\Http\Controllers\HomeController::class, 'shop'])->name('shop.products');
+Route::get('/shop-products', [App\Http\Controllers\HomeController::class, 'shop'])->name('shop.products');
 Route::get('/shop-detail', [App\Http\Controllers\HomeController::class, 'shopDetail'])->name('shop.detail');
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 Route::get('/testimonial', [App\Http\Controllers\HomeController::class, 'testimonial'])->name('testimonial');
