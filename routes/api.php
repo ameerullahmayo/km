@@ -27,4 +27,6 @@ Route::middleware('auth:api')->group( function () {
     Route::get('products-list', [ProductController::class,'getProductsList']);
     Route::get('product-details/{id}', [ProductController::class,'getProductDetails']);
     Route::get('user-profile/{user_id}', [RegisterController::class,'userProfile']);
+    Route::get('banners-list' , [ProductController::class , 'getBannersList']);
+    Route::get('audios-list' , [ProductController::class , 'getAudiosList']);
 });

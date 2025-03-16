@@ -4,7 +4,8 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
-
+use App\Models\Banner;
+use App\Models\Audio;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Models\Category;
@@ -23,7 +24,7 @@ class ProductController extends BaseController
         $categories=Category::get();
         
 
-        return $this->sendResponse($categories, 'Categories List');
+        return $this->sendResponse('Categories List', $categories);
     }
     public function getProductsList(Request $request)
     {
@@ -31,7 +32,7 @@ class ProductController extends BaseController
         $products=Product::where('category_id',$request->categories)->with('category')->get();
         
 
-        return $this->sendResponse($products, 'Products List');
+        return $this->sendResponse('Products List',$products);
     }
 
     public function getProductDetails($id)
@@ -40,7 +41,21 @@ class ProductController extends BaseController
         $product=Product::with('category')->where('id',$id)->first();
         
 
-        return $this->sendResponse($product, 'Product Details');
+        return $this->sendResponse('Product Details',$product);
+    }
+
+    public function getBannersList(){
+
+        $banners = Banner::get();
+
+        return $this->sendResponse('Banners List' , $banners);
+    }
+
+    public function getAudiosList(){
+
+        $audios = Audio::get();
+
+        return $this->sendResponse('Audios List' , $audios);
     }
 
 }

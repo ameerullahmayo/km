@@ -7,6 +7,7 @@ use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 // use Lcobucci\JWT\Validation\Validator;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends BaseController
 {
@@ -17,7 +18,7 @@ class RegisterController extends BaseController
      */
     public function register(Request $request)
     {
-        $validator = \Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'phone' => 'required',
             'address' => 'required',

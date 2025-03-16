@@ -26,9 +26,17 @@
                 <i class="bi bi-person"></i>
                 <span>Products</span>
             </a>
-             <a class="nav-link collapsed" href="{{route('banners.index')}}">
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('banners.index')}}">
                 <i class="bi bi-person"></i>
                 <span>Banner</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('audios.index')}}">
+                <i class="bi bi-person"></i>
+                <span>Audio</span>
             </a>
         </li>
         <!-- End Profile Page Nav  categories -->

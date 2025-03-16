@@ -80,33 +80,27 @@
     </style>
     <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
     <div class="mb-sm-4 d-flex flex-wrap align-items-center text-head">
-        <h2 class="mb-3 me-auto">Categories</h2>
+        <h2 class="mb-3 me-auto">Banners</h2>
         <div>
             <ol class="breadcrumb">
 
-                <li class="breadcrumb-item"><a href="{{route('categories.index')}}">Category</a></li>
+                <li class="breadcrumb-item"><a href="{{route('categories.index')}}">Banner</a></li>
             </ol>
         </div>
     </div>
 
     <div class="no-gutters">
-        <form action="{{ route('categories.store') }}" method="POST" id="blog-form"  enctype="multipart/form-data" >
+        <form action="{{ route('banners.store') }}" method="POST" id="blog-form"  enctype="multipart/form-data" >
             @csrf
         <div class="col-xl-12">
             <div class="card" style=" padding: 30px">
                 <div class="card-header">
-                    <h4>Category information </h4>
+                    <h4>Banner information </h4>
                 </div>
 
                 <div class="auth-form">
 
                         <div class="row">
-                            <div class="mb-3 col-xl-6">
-                                <label class="mb-1 ms-1"><strong>English Title</strong></label>
-                                <input type="text" class="form-control" name="english_title" placeholder="English Title" required>
-                                <span style="color: red;">@error('english_title'){{$message}}@enderror</span>
-
-                            </div>
                             <div class="mb-3 col-xl-6">
                                 <label class="mb-1 ms-1"><strong>Urdu Title</strong></label>
                                 <input type="text" class="form-control" name="urdu_title" placeholder="Urdu Title" required>
@@ -114,17 +108,35 @@
 
                             </div>
                             <div class="mb-3 col-xl-6">
-                                <label class="mb-1 ms-1"><strong>First Image</strong></label>
-                                <input type="file" class="form-control" name="image_1" required>
-                                <span style="color: red;">@error('image_1'){{$message}}@enderror</span>
+                                <label class="mb-1 ms-1"><strong>English Title</strong></label>
+                                <input type="text" class="form-control" name="english_title" placeholder="English Title" required>
+                                <span style="color: red;">@error('english_title'){{$message}}@enderror</span>
 
                             </div>
                             <div class="mb-3 col-xl-6">
+                                <label class="mb-1 ms-1"><strong>Urdu Description</strong></label>
+                                <input type="text" class="form-control" name="urdu_description" placeholder="Urdu Description" required>
+                                <span style="color: red;">@error('urdu_description'){{$message}}@enderror</span>
+
+                            </div>
+                            <div class="mb-3 col-xl-6">
+                                <label class="mb-1 ms-1"><strong>English Description</strong></label>
+                                <input type="text" class="form-control" name="english_description" placeholder="English Description" required>
+                                <span style="color: red;">@error('english_description'){{$message}}@enderror</span>
+
+                            </div>
+                            <div class="mb-3 col-xl-6">
+                                <label class="mb-1 ms-1"><strong>Image</strong></label>
+                                <input type="file" class="form-control" name="image" required>
+                                <span style="color: red;">@error('image'){{$message}}@enderror</span>
+
+                            </div>
+                            {{-- <div class="mb-3 col-xl-6">
                                 <label class="mb-1 ms-1"><strong>2nd Image</strong></label>
                                 <input type="file" class="form-control" name="image_2" required>
                                 <span style="color: red;">@error('image_2'){{$message}}@enderror</span>
 
-                            </div>
+                            </div> --}}
                              <div class="mb-3 col-xl-12 mt-4">
                                 <label class="switch">
                                     <input type="checkbox"name="status" value="1" checked >

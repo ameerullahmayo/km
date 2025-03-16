@@ -83,7 +83,7 @@
                 <div class="card-header">
                     <h4 class="card-title"> Banner List</h4>
 
-                    <a href="{{route('categories.create')}}" class="btn btn-primary btn-sl-sm me-2">Add New Banner</a>
+                    <a href="{{route('banners.create')}}" class="btn btn-primary btn-sl-sm me-2">Add New Banner</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -91,10 +91,12 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>English Title</th>
                                 <th>Urdu Title</th>
-                                 <th>First Image</th>
-                                <th>2nd Image</th>
+                                <th>English Title</th>
+                                <th>Urdu Description</th>
+                                <th>English Description</th>
+                                 <th>Image</th>
+                                {{-- <th>2nd Image</th> --}}
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -103,10 +105,12 @@
                             @foreach($banners as $key => $banner)
                                 <tr>
                                     <th>{{$key+1}}</th>
-                                    <td>{{$banner->english_title}}</td>
                                     <td>{{$banner->urdu_title}}</td>
-                                    <td><img src="{{$banner->image_1}}"  style="width: 100px"></td>
-                                    <td><img src="{{$banner->image_2}}"  style="width: 100px"></td>
+                                    <td>{{$banner->english_title}}</td>
+                                    <td>{{$banner->urdu_description}}</td>
+                                    <td>{{$banner->english_description}}</td>
+                                    <td><img src="{{$banner->image}}"  style="width: 100px"></td>
+                                    {{-- <td><img src="{{$banner->image_2}}"  style="width: 100px"></td> --}}
                                     <td>@if($banner->status == 1) <label class="switch">
                                             <input type="checkbox" checked disabled>
                                             <span class="slider round"></span>
@@ -114,9 +118,9 @@
                                             <input type="checkbox" disabled>
                                             <span class="slider round"></span>
                                         </label> @endif</td>
-                                    <td><a href="{{route('categories.edit',$banner->id)}}"
+                                    <td><a href="{{route('banners.edit',$banner->id)}}"
                                            class="btn btn-success" > Edit </a>
-                                        <a href="{{route('categories.show',$banner->id)}}"
+                                        <a href="{{route('banners.show',$banner->id)}}"
                                            class="btn btn-danger" > Delete </a></td>
 
 

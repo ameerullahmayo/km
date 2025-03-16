@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AudioController;
+use App\Http\Controllers\BannerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
@@ -31,6 +33,9 @@ Route::resource('categories', App\Http\Controllers\CategoryController::class);
 
 // Define resource routes for Banner
 Route::resource('banners', App\Http\Controllers\BannerController::class);
+
+//Define resource routes for Audio
+Route::resource('audios' , AudioController::class);
 //user routes
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/category', [App\Http\Controllers\HomeController::class, 'categories'])->name('shop.categories');

@@ -13,7 +13,7 @@ class BannerController extends Controller
      */
     public function index()
     {
-        $banners = Category::get();
+        $banners = Banner::get();
 
         return view('backend.banners.index',compact('banners'));
     }
@@ -32,116 +32,120 @@ class BannerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image_1' => 'required|image|mimes:jpeg,png,jpg,gif',
-            'image_2' => 'required|image|mimes:jpeg,png,jpg,gif', // Maximum file size 2MB
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+            // 'image_2' => 'required|image|mimes:jpeg,png,jpg,gif', // Maximum file size 2MB
         ]);
-        $category = new Category();
-        $category->english_title = $request->english_title;
-        $category->urdu_title = $request->urdu_title;
+        $banner = new Banner();
+        $banner->urdu_title = $request->urdu_title;
+        $banner->english_title = $request->english_title;
+        $banner->urdu_description = $request->urdu_description;
+        $banner->english_description = $request->english_description;
         if($request->status){
-            $category->status = $request->status;
+            $banner->status = $request->status;
         }
         // $image->filename = $filename;
         // $image->path = 'category_images/' . $filename; // Store relative path
-        if($request->hasfile('image_2'))
+        if($request->hasfile('image'))
         {
-            $file1 = $request->file('image_1');
-            $uploadPath = public_path('category_images');
+            $file1 = $request->file('image');
+            $uploadPath = public_path('banner_images');
             $filename1 = time(). '_' . $file1->getClientOriginalName();
             $file1->move($uploadPath, $filename1);
-            $url = asset('category_images/' . $filename1);
+            $url = asset('banner_images/' . $filename1);
             
-            $category->image_1 = $url;
+            $banner->image = $url;
         }
-        if($request->hasfile('image_2'))
-        {
-             sleep(1);
-            $file2 = $request->file('image_2');
-            $filename2 = time() . '_' . $file2->getClientOriginalName();
-            $file2->move($uploadPath, $filename2);
-            $ur2 = asset('category_images/' . $filename2);
-            $category->image_2 = $ur2;
-        }
+        // if($request->hasfile('image_2'))
+        // {
+        //      sleep(1);
+        //     $file2 = $request->file('image_2');
+        //     $filename2 = time() . '_' . $file2->getClientOriginalName();
+        //     $file2->move($uploadPath, $filename2);
+        //     $ur2 = asset('category_images/' . $filename2);
+        //     $category->image_2 = $ur2;
+        // }
         // $category->type= $category->type;
         // dd($request->all(),$category);
-        $category->save();
-        return redirect()->route('categories.index')->with('success', 'Category Created successfully!');
+        $banner->save();
+        return redirect()->route('banners.index')->with('success', 'Banner Created successfully!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Banner $banner)
     {
-        $category->delete();
+        $banner->delete();
 
-         return redirect()->back()->with('success', 'Category Deleted successfully!');
+         return redirect()->back()->with('success', 'Banner Deleted successfully!');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(Banner $banner)
     {
-        return view('backend.banners.edit',compact('category'));
+        return view('backend.banners.edit',compact('banner'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Banner $banner)
     {
        
         $request->validate([
-            'image_1' => 'image|mimes:jpeg,png,jpg,gif',
-            'image_2' => 'image|mimes:jpeg,png,jpg,gif', // Maximum file size 2MB
+            'image' => 'image|mimes:jpeg,png,jpg,gif',
+            // 'image_2' => 'image|mimes:jpeg,png,jpg,gif', // Maximum file size 2MB
         ]);
 
-        $category->english_title = $request->english_title;
-        $category->urdu_title = $request->urdu_title;
+        $banner->urdu_title = $request->urdu_title;
+        $banner->english_title = $request->english_title;
+        $banner->urdu_description = $request->urdu_description;
+        $banner->english_description = $request->english_description;
         if($request->status){
 
-            $category->status = $request->status;
+            $banner->status = $request->status;
 
         }else{
-            $category->status = 0;
+            $banner->status = 0;
         }
         // $image->filename = $filename;
         // $image->path = 'category_images/' . $filename; // Store relative path
-        if($request->hasfile('image_1'))
+        if($request->hasfile('image'))
         {
-            $file1 = $request->file('image_1');
-            $uploadPath = public_path('category_images');
+            $file1 = $request->file('image');
+            $uploadPath = public_path('banner_images');
             $filename1 = time(). '_' . $file1->getClientOriginalName();
             $file1->move($uploadPath, $filename1);
-            $url = asset('category_images/' . $filename1);
-            $category->image_1 = $url;
+            $url = asset('banner_images/' . $filename1);
+            $banner->image = $url;
         }
         
-        if($request->hasfile('image_2'))
-        {
-            sleep(1);
-            $file2 = $request->file('image_2');
-            $filename2 = time(). '_' . $file2->getClientOriginalName();
-            $file2->move($uploadPath, $filename2);
-            $ur2 = asset('category_images/' . $filename2);
-            $category->image_2 = $ur2;
-        }
+        // if($request->hasfile('image_2'))
+        // {
+        //     sleep(1);
+        //     $file2 = $request->file('image_2');
+        //     $filename2 = time(). '_' . $file2->getClientOriginalName();
+        //     $file2->move($uploadPath, $filename2);
+        //     $ur2 = asset('category_images/' . $filename2);
+        //     $category->image_2 = $ur2;
+        // }
 
         // $category->type= $category->type;
     
-        $category->save();
-        return redirect()->route('categories.index')->with('success', 'Category Updated successfully!');
+        $banner->save();
+        return redirect()->route('banners.index')->with('success', 'Banner Updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(Banner $banner)
     {
 
-        $category->delete();
+        $banner->delete();
 
-        return redirect()->back()->with('success', 'Category Deleted successfully!');
+        return redirect()->back()->with('success', 'Banner Deleted successfully!');
     }
 }
