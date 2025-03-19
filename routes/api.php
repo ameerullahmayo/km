@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\RegisterController;
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,7 @@ Route::middleware('auth:api')->group( function () {
     Route::get('user-profile/{user_id}', [RegisterController::class,'userProfile']);
     Route::get('banners-list' , [ProductController::class , 'getBannersList']);
     Route::get('audios-list' , [ProductController::class , 'getAudiosList']);
+    // dd('api');
+    Route::post('orders', [OrderController::class, 'store']);
+    // dd('api');
 });

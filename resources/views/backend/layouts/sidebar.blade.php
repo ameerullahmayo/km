@@ -39,6 +39,13 @@
                 <span>Audio</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('orders.index')}}">
+                <i class="bi bi-person"></i>
+                <span>Orders</span>
+            </a>
+        </li>
+        
         <!-- End Profile Page Nav  categories -->
 
         @endif

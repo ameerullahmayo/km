@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AudioController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Models\ProductOrder;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +38,13 @@ Route::resource('banners', App\Http\Controllers\BannerController::class);
 
 //Define resource routes for Audio
 Route::resource('audios' , AudioController::class);
+
+// for orders
+Route::resource('orders' , OrderController::class);
+
+//for productorders
+// Route::resource('productorders' , ProductOrder::class);
+
 //user routes
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/category', [App\Http\Controllers\HomeController::class, 'categories'])->name('shop.categories');
