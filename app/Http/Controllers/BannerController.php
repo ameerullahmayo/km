@@ -40,9 +40,7 @@ class BannerController extends Controller
         $banner->english_title = $request->english_title;
         $banner->urdu_description = $request->urdu_description;
         $banner->english_description = $request->english_description;
-        if($request->status){
-            $banner->status = $request->status;
-        }
+        $banner->status = $request->has('status') ? 1 : 0;
         // $image->filename = $filename;
         // $image->path = 'category_images/' . $filename; // Store relative path
         if($request->hasfile('image'))
@@ -55,17 +53,7 @@ class BannerController extends Controller
             
             $banner->image = $url;
         }
-        // if($request->hasfile('image_2'))
-        // {
-        //      sleep(1);
-        //     $file2 = $request->file('image_2');
-        //     $filename2 = time() . '_' . $file2->getClientOriginalName();
-        //     $file2->move($uploadPath, $filename2);
-        //     $ur2 = asset('category_images/' . $filename2);
-        //     $category->image_2 = $ur2;
-        // }
-        // $category->type= $category->type;
-        // dd($request->all(),$category);
+        
         $banner->save();
         return redirect()->route('banners.index')->with('success', 'Banner Created successfully!');
     }

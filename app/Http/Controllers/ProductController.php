@@ -45,9 +45,9 @@ class ProductController extends Controller
         $product->urdu_title = $request->urdu_title;
         $product->english_description = $request->english_description;
         $product->urdu_description = $request->urdu_description;
-        if($request->status){
-            $product->status = $request->status;
-        }
+
+        $product->status = $request->has('status') ? 1 : 0;
+
         $product->price = $request->price;
         $product->sale_price = $request->sale_price;
         $product->quantity = $request->quantity;

@@ -97,13 +97,8 @@ class CategoryController extends Controller
 
         $category->english_title = $request->english_title;
         $category->urdu_title = $request->urdu_title;
-        if($request->status){
+        $category->status = $request->has('status') ? 1 : 0;
 
-            $category->status = $request->status;
-
-        }else{
-            $category->status = 0;
-        }
         // $image->filename = $filename;
         // $image->path = 'category_images/' . $filename; // Store relative path
         if($request->hasfile('image_1'))

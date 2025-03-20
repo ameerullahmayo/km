@@ -120,13 +120,10 @@
                                         @endforeach
                                     </td>
                                 
-                                    <td>@if($product->status == 1) <label class="switch">
-                                            <input type="checkbox" checked disabled>
-                                            <span class="slider round"></span>
-                                        </label> @else <label class="switch">
-                                            <input type="checkbox" disabled>
-                                            <span class="slider round"></span>
-                                        </label> @endif</td>
+                                    <td><label class="switch">
+                                        <input type="checkbox" {{ $product->status ? 'checked' : '' }}>
+                                        <span class="slider round"></span>
+                                    </label></td>
                                     <td><a href="{{route('products.edit',$product->id)}}"
                                            class="btn btn-success" > Edit </a>
                                         <a href="{{route('products.show',$product->id)}}"
