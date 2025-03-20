@@ -92,10 +92,13 @@
                                             </audio>
                                         </td>
                                         <td>
-                                            <label class="switch">
-                                                <input type="checkbox" {{ $audio->status ? 'checked' : '' }}>
-                                                <span class="slider"></span>
-                                            </label>
+                                            @if($audio->status == 1) <label class="switch">
+                                                <input type="checkbox" checked disabled>
+                                                <span class="slider round"></span>
+                                            </label> @else <label class="switch">
+                                                <input type="checkbox" disabled>
+                                                <span class="slider round"></span>
+                                            </label> @endif
                                         </td>
                                         <td>
                                             <a href="{{ route('audios.edit', $audio->id) }}" class="btn btn-success"> Edit </a>

@@ -107,10 +107,13 @@
                                     <td>{{$category->urdu_title}}</td>
                                     <td><img src="{{$category->image_1}}"  style="width: 100px"></td>
                                     <td><img src="{{$category->image_2}}"  style="width: 100px"></td>
-                                    <td><label class="switch">
-                                        <input type="checkbox" {{ $category->status ? 'checked' : '' }}>
-                                        <span class="slider round"></span>
-                                    </label></td>
+                                    <td>@if($category->status == 1) <label class="switch">
+                                            <input type="checkbox" checked disabled>
+                                            <span class="slider round"></span>
+                                        </label> @else <label class="switch">
+                                            <input type="checkbox" disabled>
+                                            <span class="slider round"></span>
+                                        </label> @endif</td>
                                     <td><a href="{{route('categories.edit',$category->id)}}"
                                            class="btn btn-success" > Edit </a>
                                         <a href="{{route('categories.show',$category->id)}}"

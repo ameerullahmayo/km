@@ -111,10 +111,13 @@
                                     <td>{{$banner->english_description}}</td>
                                     <td><img src="{{$banner->image}}"  style="width: 100px"></td>
                                     {{-- <td><img src="{{$banner->image_2}}"  style="width: 100px"></td> --}}
-                                    <td><label class="switch">
-                                        <input type="checkbox" {{ $banner->status ? 'checked' : '' }}>
-                                        <span class="slider round"></span>
-                                    </label></td>
+                                    <td>@if($banner->status == 1) <label class="switch">
+                                            <input type="checkbox" checked disabled>
+                                            <span class="slider round"></span>
+                                        </label> @else <label class="switch">
+                                            <input type="checkbox" disabled>
+                                            <span class="slider round"></span>
+                                        </label> @endif</td>
                                     <td><a href="{{route('banners.edit',$banner->id)}}"
                                            class="btn btn-success" > Edit </a>
                                         <a href="{{route('banners.show',$banner->id)}}"
