@@ -1,6 +1,8 @@
 @extends('backend.layouts.app')
 
 @section('content')
+
+
     <style>
         .switch {
             position: relative;
@@ -63,61 +65,70 @@
         }
     </style>
     @if(session('success'))
-        <div class="alert alert-success">
-            {{session('success')}}
-        </div>
-    @endif
-    <div class="mb-sm-4 d-flex flex-wrap align-items-center text-head">
-        <h2 class="mb-3 me-auto">Manage Orders</h2>
-        <div>
-            <ol class="breadcrumb">
-
-                <li class="breadcrumb-item"><a href="{{route('categories.index')}}">Orders</a></li>
-            </ol>
-        </div>
+    <div class="alert alert-success">
+        {{ session('success') }}
     </div>
+@endif
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card" style=" padding: 10px">
-                <div class="card-header">
-                    <h4 class="card-title"> Orders List</h4>
+<div class="mb-sm-4 d-flex flex-wrap align-items-center text-head">
+    <h2 class="mb-3 me-auto">Manage Orders</h2>
+    <div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('categories.index') }}">Orders</a></li>
+        </ol>
+    </div>
+</div>
 
-                    {{-- <a href="{{route('categories.create')}}" class="btn btn-primary btn-sl-sm me-2">Add New Category</a> --}}
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table id="example" class="table display shadow-hover card-table text-black">
-                            <thead>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card" style="padding: 10px">
+            <div class="card-header">
+                <h4 class="card-title">Orders List</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table display shadow-hover card-table text-black">
+                        <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Customer Id</th>
                                 <th>Order Number</th>
-                                 <th>Total Price</th>
+                                <th>Total Price</th>
                                 <th>Order Status</th>
                                 <th>Payment Status</th>
                                 <th>Payment Method</th>
                             </tr>
-                            </thead>
-                            <tbody>
+                        </thead>
+                        <tbody>
                             @foreach($orders as $key => $order)
                                 <tr>
-                                    <th>{{$key+1}}</th>
-                                    <td>{{$order->user_id}}</td>
-                                    <td>{{$order->order_number}}</td>
+                                    <th>{{ $key+1 }}</th>
+                                    <td>{{ $order->user_id }}</td>
+                                    <td>{{ $order->order_number }}</td>
                                     <td>{{ $order->total_price }}</td>
-                                    <td>{{ $order->order_status }}</td>
+                                    <td>
+                                        <form action="{{ route('orders.updateStatus', $order->id) }}" method="POST">
+                                            @csrf
+                                            @method('POST')
+                                            <select class="form-select" name="order_status" onchange="this.form.submit()">
+                                                <option value="pending" {{ $order->order_status == 'pending' ? 'selected' : '' }}> ⏳ Pending</option>
+                                                <option value="processing" {{ $order->order_status == 'processing' ? 'selected' : '' }}> 🔧 Processing</option>
+                                                <option value="shipped" {{ $order->order_status == 'shipped' ? 'selected' : '' }}> 🚚 Shipped</option>
+                                                <option value="delivered" {{ $order->order_status == 'delivered' ? 'selected' : '' }}> ✅ Delivered</option>
+                                                <option value="cancelled" {{ $order->order_status == 'cancelled' ? 'selected' : '' }}> ❌ Cancelled</option>
+                                            </select>
+                                        </form>
+                                    </td>
                                     <td>{{ $order->payment_status }}</td>
                                     <td>{{ $order->payment_method }}</td>
                                 </tr>
                             @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <!-- /# card -->
         </div>
     </div>
+</div>
 
 @endsection

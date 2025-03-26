@@ -45,6 +45,8 @@ Route::resource('orders' , OrderController::class);
 //for productorders
 // Route::resource('productorders' , ProductOrder::class);
 
+Route::post('/orders/update-status/{id}', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+
 //user routes
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/category', [App\Http\Controllers\HomeController::class, 'categories'])->name('shop.categories');

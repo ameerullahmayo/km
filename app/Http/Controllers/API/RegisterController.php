@@ -72,15 +72,6 @@ class RegisterController extends BaseController
         
     }
 
-    public function forgotPassword(Request $request)
-    {
-        $credentials = request()->validate(['email' => 'required|email']);
-
-        Password::sendResetLink($credentials);
-
-        return response()->json(["msg" => 'Reset password link sent on your email id.']);
-    }
-
 
     public function userId(Request $request)
     {

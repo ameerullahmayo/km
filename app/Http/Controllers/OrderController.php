@@ -59,6 +59,29 @@ class OrderController extends Controller
         //
     }
 
+        public function updateStatus(Request $request, $id)
+        {
+        // Validate the request
+            $request->validate([
+
+                'order_status' => 'required|string|in:pending,processing,shipped,delivered,cancelled',
+            ]);
+
+            try {
+                // Find the order and update status
+                $order = Order::findOrFail($id);
+                $order->order_status = $request->order_status;
+                $order->save();
+
+                return redirect()->back()->with('success', 'Order status updated successfully!');
+            } catch (\Exception $e) {
+
+                return redirect()->back()->with('error', 'Failed to update order status.');
+                }
+        }
+
+
+
     /**
      * Remove the specified resource from storage.
      */
