@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Response;
 // use Lcobucci\JWT\Validation\Validator;
 use Illuminate\Support\Facades\Validator;
+
 
 class RegisterController extends BaseController
 {
@@ -66,6 +70,56 @@ class RegisterController extends BaseController
         $request->user()->token()->revoke();
          return $this->sendResponse([],'Successfully logged out');
         
+    }
+
+    public function forgotPassword(Request $request)
+    {
+        $credentials = request()->validate(['email' => 'required|email']);
+
+        Password::sendResetLink($credentials);
+
+        return response()->json(["msg" => 'Reset password link sent on your email id.']);
+    }
+
+
+    public function userId(Request $request)
+    {
+        $input = $request->only('phone');
+
+        $validator = Validator::make($input, [
+            'phone' => 'required|exists:users,phone',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $user = User::where('phone' , $request->input('phone'))->first();
+
+        return Response::json(['message' => 'User id' , 'id'=> $user->id]);
+    }
+
+
+    public function resetPassword(Request $request){
+
+        $input = $request->only('id' , 'password' , 'password_confirmation');
+
+        $validator = Validator::make($input , [
+            'id' => 'required|exists:users,id',
+            'password' => 'required|min:8|string|confirmed',
+        ]);
+
+        if($validator->fails()){
+
+            return $this->sendError('Validation error' ,$validator->errors());
+        }
+
+        $user = User::find($request->input('id'));
+
+        $user->password = bcrypt($input['password']);
+
+        $user->save();
+        return $this->sendResponse([] , 'Password reset successfully');
     }
 
     
