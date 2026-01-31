@@ -79,13 +79,13 @@ class OrderController extends Controller
         ], 201);
     }
 
-    public function myOrders()
+    public function user_Orders($id)
     {
-        $orders = Order::userOrders();
+        $orders = Order::userOrders($id);
 
         return response()->json([
             'success' => true,
             'orders' => $orders
         ]);
     }
-}
+

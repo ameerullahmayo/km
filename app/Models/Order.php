@@ -28,11 +28,11 @@ class Order extends Model
         return $this->hasMany(ProductOrder::class);
     }
 
-    public static function userOrders()
+    public static function userOrders($id)
     {
         return self::with('orderProducts')
-            ->where('user_id', auth()->id())
-            ->latest() // defaults to created_at
+            ->where('user_id', $id)
+            ->latest()
             ->get();
     }
 }

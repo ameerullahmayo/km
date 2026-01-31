@@ -35,7 +35,7 @@ Route::middleware('auth:api')->group( function () {
     Route::get('user-profile/{user_id}', [RegisterController::class,'userProfile']);
     Route::get('banners-list' , [ProductController::class , 'getBannersList']);
     Route::get('audios-list' , [ProductController::class , 'getAudiosList']);
-    Route::get('user-orders', [OrderController::class, 'myOrders'])->name('getUserOrders');
+    Route::get('user-order/{user_id}', [OrderController::class, 'user_Orders']);
 
     // dd('api');
     Route::post('orders', [OrderController::class, 'store']);
