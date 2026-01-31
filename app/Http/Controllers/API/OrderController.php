@@ -25,29 +25,29 @@ class OrderController extends Controller
 
         // Create Order with all fields (if provided)
         $order = Order::create([
-            'user_id'             => $request->user_id,
-            'order_number'        => $orderNumber,
-            'total_price'         => 0, // Will be updated after product addition
-            'discount'            => $request->discount ?? 0,
-            'tax'                 => $request->tax ?? 0,
-            'shipping_status'     => $request->shipping_status ?? 'pending',
-            'order_status'        => $request->order_status ?? 'pending',
-            'payment_status'      => $request->payment_status ?? 'pending',
-            'shipping_cost'       => $request->shipping_cost ?? 0,
-            'payment_method'      => $request->payment_method ?? null,
-            'transaction_id'      => $request->transaction_id ?? null,
-            'card_type'           => $request->card_type ?? null,
-            'card_last_four'      => $request->card_last_four ?? null,
-            'card_expiry'         => $request->card_expiry ?? null,
-            'billing_address'     => $request->billing_address ?? null,
-            'billing_city'        => $request->billing_city ?? null,
-            'billing_country'     => $request->billing_country ?? null,
+            'user_id' => $request->user_id,
+            'order_number' => $orderNumber,
+            'total_price' => 0, // Will be updated after product addition
+            'discount' => $request->discount ?? 0,
+            'tax' => $request->tax ?? 0,
+            'shipping_status' => $request->shipping_status ?? 'pending',
+            'order_status' => $request->order_status ?? 'pending',
+            'payment_status' => $request->payment_status ?? 'pending',
+            'shipping_cost' => $request->shipping_cost ?? 0,
+            'payment_method' => $request->payment_method ?? null,
+            'transaction_id' => $request->transaction_id ?? null,
+            'card_type' => $request->card_type ?? null,
+            'card_last_four' => $request->card_last_four ?? null,
+            'card_expiry' => $request->card_expiry ?? null,
+            'billing_address' => $request->billing_address ?? null,
+            'billing_city' => $request->billing_city ?? null,
+            'billing_country' => $request->billing_country ?? null,
             'billing_postal_code' => $request->billing_postal_code ?? null,
-            'shipping_address'    => $request->shipping_address ?? null,
-            'shipping_city'       => $request->shipping_city ?? null,
-            'shipping_state'      => $request->shipping_state ?? null,
-            'shipping_country'    => $request->shipping_country ?? null,
-            'shipping_postal_code'=> $request->shipping_postal_code ?? null,
+            'shipping_address' => $request->shipping_address ?? null,
+            'shipping_city' => $request->shipping_city ?? null,
+            'shipping_state' => $request->shipping_state ?? null,
+            'shipping_country' => $request->shipping_country ?? null,
+            'shipping_postal_code' => $request->shipping_postal_code ?? null,
         ]);
 
         $totalPrice = 0;
@@ -61,10 +61,10 @@ class OrderController extends Controller
             }
 
             $orderProduct = ProductOrder::create([
-                'order_id'   => $order->id,
+                'order_id' => $order->id,
                 'product_id' => $product['product_id'],
-                'quantity'   => $product['quantity'],
-                'price'      => $product['price'],
+                'quantity' => $product['quantity'],
+                'price' => $product['price'],
             ]);
 
             $totalPrice += $orderProduct->quantity * $orderProduct->price;
@@ -75,7 +75,7 @@ class OrderController extends Controller
 
         return response()->json([
             'message' => 'Order placed successfully!',
-            'order'   => $order->load('orderProducts'),
+            'order' => $order->load('orderProducts'),
         ], 201);
     }
 
@@ -88,3 +88,4 @@ class OrderController extends Controller
             'orders' => $orders
         ]);
     }
+}
