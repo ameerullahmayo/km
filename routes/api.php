@@ -28,13 +28,15 @@ Route::middleware('auth:api')->group( function () {
 
     Route::get('user-id' , [RegisterController::class , 'userId']);
     Route::post('reset-password' , [RegisterController::class , 'resetPassword']);
- 
+
     Route::get('categories-list', [ProductController::class,'getCategoreisList']);
     Route::get('products-list', [ProductController::class,'getProductsList']);
     Route::get('product-details/{id}', [ProductController::class,'getProductDetails']);
     Route::get('user-profile/{user_id}', [RegisterController::class,'userProfile']);
     Route::get('banners-list' , [ProductController::class , 'getBannersList']);
     Route::get('audios-list' , [ProductController::class , 'getAudiosList']);
+    Route::get('user-orders', [OrderController::class, 'myOrders'])->name('getUserOrders');
+
     // dd('api');
     Route::post('orders', [OrderController::class, 'store']);
     // dd('api');

@@ -55,7 +55,7 @@ class RegisterController extends BaseController
             $user = Auth::user();
             $success['id'] =  $user->id;
             $success['token'] =  $user->createToken('MyApp')-> accessToken;
-            
+
 
             return $this->sendResponse($success, 'User login successfully.');
         }
@@ -69,7 +69,7 @@ class RegisterController extends BaseController
         // Validate the token before attempting to log out
         $request->user()->token()->revoke();
          return $this->sendResponse([],'Successfully logged out');
-        
+
     }
 
 
@@ -113,14 +113,12 @@ class RegisterController extends BaseController
         return $this->sendResponse([] , 'Password reset successfully');
     }
 
-    
+
     public function userProfile($user_id)
     {
         // Validate the token before attempting to log out
         $user = User::where('id',$user_id)->first();
-        
+
         return $this->sendResponse($user, 'User Profil');
-        
-        
     }
 }

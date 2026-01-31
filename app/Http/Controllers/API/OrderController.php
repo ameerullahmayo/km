@@ -7,6 +7,7 @@ use App\Models\ProductOrder;
 use App\Models\Order;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -74,7 +75,16 @@ class OrderController extends Controller
 
         return response()->json([
             'message' => 'Order placed successfully!',
-            'order'   => $order->load('orderProducts'), 
+            'order'   => $order->load('orderProducts'),
         ], 201);
     }
-}
+
+    public function myOrders()
+    {
+        $orders = Order::userOrders();
+
+        return response()->json([
+            'success' => true,
+            'orders' => $orders
+        ]);
+    }
